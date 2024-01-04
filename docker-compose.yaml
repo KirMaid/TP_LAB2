@@ -8,6 +8,9 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./src:/var/www/laravel/
+    depends_on:
+      - postgresql
+      - php
   php:
     build:
       context: dockerfiles
@@ -17,12 +20,24 @@ services:
   postgresql:
     image: "postgres:latest"
     ports:
-      - "3316:3306"
+      - "5442:5432"
     env_file:
       - env/postgre.env
+    volumes:
+      - db:/var/lib/postgresql/data
   composer:
     build:
       context: dockerfiles
       dockerfile: composer.Dockerfile
     volumes:
       - ./src:/var/www/laravel/
+  artisan:
+    build:
+      context: dockerfiles
+      dockerfile: php.Dockerfile
+    volumes:
+      - ./src:/var/www/laravel/
+    entrypoint: ["php", "/var/www/laravel/artisan"]
+
+volumes:
+  db:

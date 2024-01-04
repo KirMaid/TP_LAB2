@@ -9,4 +9,3 @@ RUN apk --no-cache update \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     \
     && docker-php-ext-install pdo_pgsql \
-RUN chown -R www-data:www-data /var/www
