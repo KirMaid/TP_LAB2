@@ -10,6 +10,6 @@ class Coupon extends Model
     use HasFactory;
 
     public function products(){
-        return $this->belongsToMany('App\Product');
+        return $this->belongsToMany(Product::class);
     }
 }
