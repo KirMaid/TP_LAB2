@@ -2,12 +2,6 @@
 
 @section('content')
 <div class="container">
-    <form class="card p-2">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Промо-код">
-            <button type="submit" class="btn btn-secondary">Выкупить</button>
-        </div>
-    </form>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

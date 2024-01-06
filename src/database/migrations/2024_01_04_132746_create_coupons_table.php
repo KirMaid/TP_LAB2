@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100);
+            $table->string('code', 100);
             $table->timestamps();
         });
     }

@@ -27,7 +27,9 @@ npm run build
 docker-compose run composer create-project laravel/laravel .
 
 ##### В случае, если выбивает ошибку на папку логов в storage:
-Заходим к контейнер nginx, выполняем команду chmod -R 775 var/www/laravel/storage
+Заходим к контейнер nginx, выполняем команду
+chmod -R 777 storage
+chmod -R 777 bootstrap/cache
 
 ### Для использования composer:
 docker-compose run composer <Команда>

@@ -2,6 +2,8 @@ FROM php:8.2-fpm-alpine
 
 WORKDIR /var/www/laravel
 
+RUN chown -R www-data:www-data /var/www
+
 RUN apk --no-cache update \
     && apk add --no-cache autoconf g++ make \
     postgresql-dev \

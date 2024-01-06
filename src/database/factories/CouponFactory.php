@@ -17,7 +17,7 @@ class CouponFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->company,
+            'code' => fake()->company,
         ];
     }
 }
