@@ -12,21 +12,21 @@
 
 # Установка
 
-docker-compose up
+docker-compose up nginx
 
-docker-compose run artisan storage:link
+docker-compose run --rm artisan storage:link
 
-docker-compose run composer require barryvdh/laravel-debugbar --dev
+docker-compose run --rm composer require barryvdh/laravel-debugbar --dev
 
-docker-compose run composer require laravel/telescope
+docker-compose run --rm composer require laravel/telescope
 
-docker-compose run artisan telescope:install
+docker-compose run --rm artisan telescope:install
 
-docker-compose run artisan migrate
+docker-compose run --rm artisan migrate
 
-docker-compose run composer require laravel/ui
+docker-compose run --rm composer require laravel/ui
 
-docker-compose run php artisan ui bootstrap --auth
+docker-compose run --rm php artisan ui bootstrap --auth
 
 cd src
 
@@ -36,7 +36,7 @@ npm run build
 
 ##### В случае, если в проекте нет папки src:
 
-docker-compose run composer create-project laravel/laravel .
+docker-compose run --rm composer create-project laravel/laravel .
 
 ##### В случае, если выбивает ошибку на папку логов в storage:
 Заходим к контейнер nginx, выполняем команду
