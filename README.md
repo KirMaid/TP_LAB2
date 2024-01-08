@@ -3,7 +3,7 @@
 Покупателю должна быть предоставлена скидка в 10% на любой
 товар в его день рождения.
 
-#Установка
+# Установка
 
 docker-compose up
 
@@ -27,7 +27,7 @@ npm install
 
 npm run build
 
-#####В случае, если в проекте нет папки src:
+##### В случае, если в проекте нет папки src:
 
 docker-compose run composer create-project laravel/laravel .
 
@@ -43,4 +43,4 @@ docker-compose run --rm artisan <Команда>
 ### Запуск тестов:
 docker-compose run --rm artisan test
 
-###TODO: Вынести команды в makefile, выполнять npm не локально, разобраться с правами в Windows
+### TODO: Вынести команды в makefile, выполнять npm не локально, разобраться с правами в Windows
