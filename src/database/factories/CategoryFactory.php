@@ -17,11 +17,10 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->jobTitle;
+        $name = fake()->jobTitle();
         return [
             'name' => $name,
             'content' => fake()->realText,
-            'slug' => Str::slug($name),
         ];
     }
 }

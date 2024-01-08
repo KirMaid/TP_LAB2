@@ -25,7 +25,6 @@ class ProductFactory extends Factory
             'brand_id' => Models\Brand::factory(),
             'name' => $name,
             'content' => fake()->realText,
-            'slug' => Str::slug($name),
             'price' => rand(1000, 2000)
         ];
     }

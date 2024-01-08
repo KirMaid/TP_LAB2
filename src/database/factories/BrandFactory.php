@@ -21,7 +21,6 @@ class BrandFactory extends Factory
         return [
             'name' => $name,
             'content' => fake()->realText,
-            'slug' => Str::slug($name),
         ];
     }
 }
