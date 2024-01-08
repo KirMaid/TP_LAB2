@@ -1,4 +1,9 @@
-#Installation
+#Лабораторная работа по Технологиям программирования
+## Вариант 9
+Покупателю должна быть предоставлена скидка в 10% на любой
+товар в его день рождения.
+
+#Установка
 
 docker-compose up
 
@@ -28,8 +33,8 @@ docker-compose run composer create-project laravel/laravel .
 
 ##### В случае, если выбивает ошибку на папку логов в storage:
 Заходим к контейнер nginx, выполняем команду
-chmod -R 777 storage
-chmod -R 777 bootstrap/cache
+chmod -R 755 storage
+chmod -R 755 bootstrap/cache
 
 ### Для использования composer:
 docker-compose run --rm composer <Команда>
