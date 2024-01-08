@@ -32,9 +32,10 @@ chmod -R 777 storage
 chmod -R 777 bootstrap/cache
 
 ### Для использования composer:
-docker-compose run composer <Команда>
+docker-compose run --rm composer <Команда>
 ### Для использования artisan:
-docker-compose run artisan <Команда>
-
+docker-compose run --rm artisan <Команда>
+### Запуск тестов:
+docker-compose run --rm artisan test
 
 ###TODO: Вынести команды в makefile, выполнять npm не локально, разобраться с правами в Windows
