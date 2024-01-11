@@ -86,4 +86,25 @@ class ProductRequestTest extends TestCase
             return true;
         });
     }
+
+    public function test_registration_screen_can_be_rendered()
+    {
+        $response = $this->get('/register');
+
+        $response->assertStatus(200);
+    }
+
+/*public function test_new_users_can_register()
+    {
+        $response = $this->post('/register', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            //'birthday' => '1971-01-11'
+        ]);
+
+        $this->assertAuthenticated();
+    }*/
 }
+
