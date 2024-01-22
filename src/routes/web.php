@@ -27,3 +27,8 @@ Route::get('/catalog/product/{slug}', [Controllers\CatalogController::class,'pro
 
 Route::post('/coupon/apply', [Controllers\CouponController::class,'apply'])->name('coupon.apply');
 Route::delete('/coupon/remove', [Controllers\CouponController::class,'remove'])->name('coupon.remove');
+
+# Добавление продуктов
+Route::get('/add-product', [Controllers\ProductController::class,'create'])->name('product.create');
+Route::post('/add-product', [Controllers\ProductController::class,'store'])->name('product.store');
+Route::get('/add-product/generate-description', [Controllers\ProductController::class,'generateDesc'])->name('product.desc');

@@ -39,7 +39,7 @@
                 </div>
             </div>
     @endif
-    <form class="card p-2 mb-3" action="{{ route('coupon.apply') }}">
+    <form class="card p-2 mb-3" action="{{ route('coupon.apply') }}" method="POST">
         @csrf
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Промо-код" required>
@@ -54,7 +54,6 @@
                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Скидка</div>
                     @endif
                     <img class="card-img-top" src="{{$product->image ? asset("assets/".$product->image) : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"}}" alt="..." />
-{{--                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />--}}
                     <div class="card-body p-4">
                         <div class="text-center">
                             <h5 class="fw-bolder">{{ $product->name}}</h5>
