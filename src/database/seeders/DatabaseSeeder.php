@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
             ->has(Models\Product::factory()->count(5))
             ->count(10)
             ->create();
+        $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

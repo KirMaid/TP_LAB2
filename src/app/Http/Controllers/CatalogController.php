@@ -9,7 +9,8 @@ class CatalogController extends Controller
 {
     public function index() {
         $roots = Models\Category::where('parent_id', 0)->get();
-        return view('catalog.index', compact('roots'));
+        $goods = Models\Product::all();
+        return view('catalog.index', compact('roots','goods'));
     }
 
     public function category($slug) {

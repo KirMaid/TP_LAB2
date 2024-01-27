@@ -6,23 +6,24 @@ use GuzzleHttp\Client;
 
 class GigachatService
 {
-    protected $client;
+    protected Client $client;
 
     public function __construct()
     {
         $this->client = new Client([
             'base_uri' => 'https://gigachat.devices.sberbank.ru/api/v1/chat/',
-            'headers' => [
-                'Authorization' => 'Bearer ' . config('gigachat.api_key'),
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
+            'verify' => false
         ]);
     }
 
     public function sendMessage($message)
     {
         $response = $this->client->post('completions', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . config('gigachat.api_key'),
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
             'json' => [
                 'model' => 'GigaChat:latest',
                 'messages' => [
