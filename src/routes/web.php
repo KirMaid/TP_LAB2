@@ -32,3 +32,8 @@ Route::delete('/coupon/remove', [Controllers\CouponController::class,'remove'])-
 Route::get('/add-product', [Controllers\ProductController::class,'create'])->name('product.create');
 Route::post('/add-product', [Controllers\ProductController::class,'store'])->name('product.store');
 Route::get('/add-product/generate-description', [Controllers\ProductController::class,'generateDesc'])->name('product.desc');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
