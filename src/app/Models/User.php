@@ -12,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends \TCG\Voyager\Models\User
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRolesAndPermissions;
+    use HasApiTokens, HasFactory, Notifiable/*,HasRolesAndPermissions*/;
 
     /**
      * The attributes that are mass assignable.

@@ -13,30 +13,40 @@ class CatalogController extends Controller
         return view('catalog.index', compact('roots','goods'));
     }
 
-    public function category($slug) {
-        $category = Models\Category::where('slug', $slug)->firstOrFail();
+    public function category($name) {
+        $category = Models\Category::where('name', $name)->firstOrFail();
         $products = Models\Product::where('category_id', $category->id)->get();
         return view('catalog.category', compact('category', 'products'));
     }
 
-    public function brand($slug) {
-        $brand = Models\Brand::where('slug', $slug)->firstOrFail();
+    public function brand($name) {
+        $brand = Models\Brand::where('name', $name)->firstOrFail();
         $products = Models\Product::where('brand_id', $brand->id)->get();
         return view('catalog.brand', compact('brand', 'products'));
     }
 
-    public function product($slug) {
+    public function product($name) {
         $product = Models\Product::select(
             'products.*',
             'categories.name as category_name',
-            'categories.slug as category_slug',
             'brands.name as brand_name',
-            'brands.slug as brand_slug'
         )
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('brands', 'products.brand_id', '=', 'brands.id')
-            ->where('products.slug', $slug)
+            ->where('products.name', $name)
             ->firstOrFail();
         return view('catalog.product', compact('product'));
+    }
+
+    //TODO Вынести в отдельный контроллер
+    public function deleteProduct($id)
+    {
+        $product = Models\Product::find($id);
+        if ($product) {
+            $product->delete();
+            return redirect()->back()->with('success', 'Продукт успешно удален');
+        } else {
+            return redirect()->back()->with('error', 'Продукт не найден');
+        }
     }
 }
