@@ -34,6 +34,10 @@ Route::get('/add-product', [Controllers\ProductController::class,'create'])->nam
 Route::post('/add-product', [Controllers\ProductController::class,'store'])->name('product.store');
 Route::get('/add-product/generate-description', [Controllers\ProductController::class,'generateDesc'])->name('product.desc');
 
+# Обновление продукта
+Route::get('/update-product/{id}', [Controllers\ProductController::class,'update'])->name('product.update.index');
+Route::post('/update-product/{id}', [Controllers\ProductController::class,'updateProduct'])->name('product.update');
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

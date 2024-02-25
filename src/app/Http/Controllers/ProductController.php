@@ -26,4 +26,33 @@ class ProductController
         $description = $gigachat->sendMessage('Сгенерируй описание для товара 20 слов');
         return response()->json(['description' => $description]);
     }
+
+    public function updateProduct(Request $request, $id){
+        // Валидация данных из формы
+        $request->validate([
+            'name' => 'required',
+            'content' => 'required',
+            'price' => 'required|numeric',
+            'image' => 'required'
+        ]);
+
+        // Найти товар по ID
+        $product = Product::findOrFail($id);
+
+        // Обновить данные товара
+        $product->update([
+            'name' => $request->name,
+            'content' => $request->content,
+            'price' => $request->price,
+            'image' => $request->image,
+        ]);
+
+        // Перенаправить пользователя обратно с сообщением об успехе
+        return redirect()->route('product.update.index',$product->id)->with('success', 'Товар успешно обновлен');
+    }
+
+    public function update($id){
+        $product = Product::findOrFail($id);
+        return view('product.update',compact('product'));
+    }
 }

@@ -18,9 +18,10 @@ class GigachatService
 
     public function sendMessage($message)
     {
+        $authKey = base64_encode(config('gigachat.client_secret').':'.config('gigachat.api_key'));
         $response = $this->client->post('completions', [
             'headers' => [
-                'Authorization' => 'Bearer ' . config('gigachat.api_key'),
+                'Authorization' => 'Basic ' . $authKey,
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ],
