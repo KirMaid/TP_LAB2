@@ -13,7 +13,7 @@ class ProductRequestTest extends TestCase
     {
         $this->assertGuest();
         $response = $this->get(route('index'));
-        $response->assertViewHas('isBirthday',false);
+        $response->assertViewHas('isBirthday', false);
     }
 
     public function test_user_birthday_today(): void
@@ -23,7 +23,7 @@ class ProductRequestTest extends TestCase
         ]);
         $this->actingAs($user);
         $response = $this->get(route('index'));
-        $response->assertViewHas('isBirthday',true);
+        $response->assertViewHas('isBirthday', true);
     }
 
     public function test_user_birthday_not_today(): void
@@ -34,7 +34,7 @@ class ProductRequestTest extends TestCase
         ]);
         $this->actingAs($user);
         $response = $this->get(route('index'));
-        $response->assertViewHas('isBirthday',false);
+        $response->assertViewHas('isBirthday', false);
     }
 
     public function test_list_products()
@@ -46,7 +46,7 @@ class ProductRequestTest extends TestCase
         $this->actingAs($user);
         $response = $this->get(route('index'));
         $response->assertViewHas('products', function ($objects) {
-            foreach ($objects as $object){
+            foreach ($objects as $object) {
                 if (!($object instanceof Product))
                     return false;
             }
@@ -62,7 +62,7 @@ class ProductRequestTest extends TestCase
         $this->actingAs($user);
         $response = $this->get(route('index'));
         $response->assertViewHas('products', function ($objects) {
-            foreach ($objects as $object){
+            foreach ($objects as $object) {
                 if (!($object instanceof Product))
                     return false;
                 if (!isset($object->oldPrice))
@@ -77,7 +77,7 @@ class ProductRequestTest extends TestCase
         $this->assertGuest();
         $response = $this->get(route('index'));
         $response->assertViewHas('products', function ($objects) {
-            foreach ($objects as $object){
+            foreach ($objects as $object) {
                 if (!($object instanceof Product))
                     return false;
                 if (isset($object->oldPrice))
@@ -94,17 +94,16 @@ class ProductRequestTest extends TestCase
         $response->assertStatus(200);
     }
 
-/*public function test_new_users_can_register()
+    public function test_new_users_can_register()
     {
-        $response = $this->post('/register', [
+        $this->post('/register', [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
-            //'birthday' => '1971-01-11'
         ]);
 
         $this->assertAuthenticated();
-    }*/
+    }
 }
 

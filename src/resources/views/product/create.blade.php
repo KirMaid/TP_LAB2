@@ -28,9 +28,9 @@
                     <label class="form-label" for="price">Price</label>
                     <input class="form-control" type="number" id="price" name="price">
                 </div>
-                <input class="btn btn-primary" type="submit" value="Submit">
+                <input class="btn btn-primary" type="submit" value="Сохранить">
+                <button id="generateDesc" class="btn btn-primary">Сгенерировать описание</button>
             </form>
-            <button id="generateDesc" class="btn btn-primary">Сгенерировать описание</button>
         </div>
     </div>
 @endsection
@@ -49,16 +49,23 @@
 <script>
     $(document).ready(function(){
         $('#generateDesc').click(function(){
-            $.ajax({
-                url: '/add-product/generate-description',
-                type: 'GET',
-                success: function(data){
-                    $('#content').val(data.description);
-                },
-                error: function(error){
-                    console.log(error);
-                }
-            });
+            var productName = $('#name').val();
+            if (productName){
+                $.ajax({
+                    url: '/add-product/generate-description',
+                    type: 'POST',
+                    data: { name: productName },
+                    success: function(data){
+                        $('#content').val(data.description);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            }
+            else {
+                alert('Пожалуйста, введите название товара.');
+            }
         });
     });
 </script>

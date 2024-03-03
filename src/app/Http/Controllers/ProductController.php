@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Services\GigachatService;
 use Illuminate\Http\Request;
+use MessageLogger;
 
-class ProductController
+class ProductController extends Controller
 {
     public function create()
     {
@@ -22,8 +23,10 @@ class ProductController
 
     public function generateDesc(Request $request)
     {
-        $gigachat = new GigachatService();
-        $description = $gigachat->sendMessage('Сгенерируй описание для товара 20 слов');
+        $gigachat = GigachatService::getInstance();
+        $logger = new MessageLogger();
+        $gigachat->attach($logger);
+        $description = $gigachat->sendMessage("Сгенерируй описание для товара c названием {$request->input('name')} 20 слов");
         return response()->json(['description' => $description]);
     }
 
