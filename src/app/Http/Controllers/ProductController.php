@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\DefaultMessageSender;
 use App\Services\GigachatService;
+use App\Services\MessageLogger;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use MessageLogger;
 
 class ProductController extends Controller
 {
@@ -23,10 +25,12 @@ class ProductController extends Controller
 
     public function generateDesc(Request $request)
     {
-        $gigachat = GigachatService::getInstance();
-        $logger = new MessageLogger();
-        $gigachat->attach($logger);
-        $description = $gigachat->sendMessage("Сгенерируй описание для товара c названием {$request->input('name')} 20 слов");
+        $a = new DefaultMessageSender();
+        $description = $a->getAuthToken();
+//        $gigachat = GigachatService::getInstance();
+//        $logger = new MessageLogger();
+//        $gigachat->attach($logger);
+//        $description = $gigachat->sendMessage("Сгенерируй описание для товара c названием {$request->input('name')} 20 слов");
         return response()->json(['description' => $description]);
     }
 

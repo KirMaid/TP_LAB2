@@ -32,7 +32,8 @@ Route::delete('/coupon/remove', [Controllers\CouponController::class,'remove'])-
 # Добавление продуктов
 Route::get('/add-product', [Controllers\ProductController::class,'create'])->name('product.create');
 Route::post('/add-product', [Controllers\ProductController::class,'store'])->name('product.store');
-Route::get('/add-product/generate-description', [Controllers\ProductController::class,'generateDesc'])->name('product.desc');
+Route::post('/add-product/generate-description', [Controllers\ProductController::class,'generateDesc'])->name('product.desc');
+Route::post('/add-product/generate-image', [Controllers\ProductController::class,'generateImage'])->name('product.img');
 
 # Обновление продукта
 Route::get('/update-product/{id}', [Controllers\ProductController::class,'update'])->name('product.update.index');

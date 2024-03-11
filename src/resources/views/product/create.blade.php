@@ -29,8 +29,9 @@
                     <input class="form-control" type="number" id="price" name="price">
                 </div>
                 <input class="btn btn-primary" type="submit" value="Сохранить">
-                <button id="generateDesc" class="btn btn-primary">Сгенерировать описание</button>
             </form>
+            <button id="generateDesc" class="btn btn-primary">Сгенерировать описание</button>
+            <button id="generateImage" class="btn btn-primary">Сгенерировать картинку</button>
         </div>
     </div>
 @endsection
@@ -55,6 +56,33 @@
                     url: '/add-product/generate-description',
                     type: 'POST',
                     data: { name: productName },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data){
+                        $('#content').val(data.description);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            }
+            else {
+                alert('Пожалуйста, введите название товара.');
+            }
+        });
+    });
+    $(document).ready(function(){
+        $('#generateImage').click(function(){
+            var productName = $('#name').val();
+            if (productName){
+                $.ajax({
+                    url: '/add-product/generate-image',
+                    type: 'POST',
+                    data: { name: productName },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     success: function(data){
                         $('#content').val(data.description);
                     },

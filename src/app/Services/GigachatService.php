@@ -2,13 +2,8 @@
 
 namespace App\Services;
 
-use GuzzleHttp\Client;
-use MessageSender;
-use Observer;
-
 class GigachatService
 {
-    protected Client $client;
     private static ?GigachatService $instance = null;
     private MessageSender $strategy;
     private array $observers = [];
@@ -35,12 +30,7 @@ class GigachatService
 
     public function __construct()
     {
-        $this->client = new Client([
-            'base_uri' => 'https://gigachat.devices.sberbank.ru/api/v1/',
-            'verify' => false
-        ]);
-        // Устанавливаем стратегию по умолчанию
-        $this->setStrategy(new DefaultMessageSender($this->client));
+        $this->setStrategy(new DefaultMessageSender());
     }
 
     public static function getInstance(): GigachatService
